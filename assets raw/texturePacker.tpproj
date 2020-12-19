@@ -32,7 +32,7 @@ limitMemory=true
 useIndexes=true
 
 scaleFactors=[{suffix:"",factor:1,resampling:bicubic}]
-inputFiles=[{path:adventurer,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:error.png,type:Input,regionName:null},{path:background.png,type:Input,regionName:null}]
+inputFiles=[{path:adventurer,type:Input,dirFilePrefix:adventurer-,recursive:false,flattenPaths:false},{path:error.png,type:Input,regionName:null},{path:background.png,type:Input,regionName:null},{path:wizard,type:Input,dirFilePrefix:mage-,recursive:false,flattenPaths:false}]
 
 
 -PROJ-

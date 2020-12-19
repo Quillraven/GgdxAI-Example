@@ -12,14 +12,18 @@ enum class AnimationType(
     val offsetInPxY: Float = 0f,
 ) {
     NONE("error"),
-    ADVENTURER_IDLE("idle", Animation.PlayMode.LOOP_PINGPONG, 1f),
-    ADVENTURER_ATTACK_1("attack1", Animation.PlayMode.NORMAL, 1f),
-    ADVENTURER_ATTACK_2("attack2", Animation.PlayMode.NORMAL, 1f),
-    ADVENTURER_ATTACK_3("attack3", Animation.PlayMode.NORMAL, 1f),
-    ADVENTURER_FALL("fall", Animation.PlayMode.LOOP_PINGPONG, 1f),
-    ADVENTURER_START_JUMP("start_jump", Animation.PlayMode.NORMAL, 1f),
-    ADVENTURER_JUMP("jump", Animation.PlayMode.LOOP, 1f),
-    ADVENTURER_RUN("run", Animation.PlayMode.LOOP, 1f),
+    ADVENTURER_IDLE("adventurer-idle", Animation.PlayMode.LOOP_PINGPONG, 1f),
+    ADVENTURER_ATTACK_1("adventurer-attack1", Animation.PlayMode.NORMAL, 1f),
+    ADVENTURER_ATTACK_2("adventurer-attack2", Animation.PlayMode.NORMAL, 1f),
+    ADVENTURER_ATTACK_3("adventurer-attack3", Animation.PlayMode.NORMAL, 1f),
+    ADVENTURER_FALL("adventurer-fall", Animation.PlayMode.LOOP_PINGPONG, 1f),
+    ADVENTURER_START_JUMP("adventurer-start_jump", Animation.PlayMode.NORMAL, 1f),
+    ADVENTURER_JUMP("adventurer-jump", Animation.PlayMode.LOOP, 1f),
+    ADVENTURER_RUN("adventurer-run", Animation.PlayMode.LOOP, 1f),
+    MAGE_IDLE("mage-idle"),
+    MAGE_RUN("mage-run"),
+    MAGE_START_CAST("mage-start-cast", Animation.PlayMode.NORMAL),
+    MAGE_CAST("mage-cast", Animation.PlayMode.NORMAL),
 }
 
 class AnimationComponent : Component, Pool.Poolable {

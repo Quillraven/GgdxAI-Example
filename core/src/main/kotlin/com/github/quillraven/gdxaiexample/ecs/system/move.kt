@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.github.quillraven.gdxaiexample.ecs.component.MoveComponent
 import com.github.quillraven.gdxaiexample.ecs.component.MoveDirection
+import com.github.quillraven.gdxaiexample.ecs.component.PlayerComponent
 import com.github.quillraven.gdxaiexample.ecs.component.RenderComponent
 import ktx.ashley.allOf
 import ktx.ashley.get
@@ -15,19 +16,21 @@ class MoveSystem : IteratingSystem(allOf(MoveComponent::class).get()) {
         val move = entity[MoveComponent.mapper]
         requireNotNull(move, { "MoveComponent missing for entity '$entity'" })
 
-        when {
-            Gdx.input.isKeyPressed(Input.Keys.LEFT) -> move.direction = MoveDirection.Left
-            Gdx.input.isKeyPressed(Input.Keys.RIGHT) -> move.direction = MoveDirection.Right
-            else -> move.direction = MoveDirection.None
+        if (entity[PlayerComponent.mapper] != null) {
+            when {
+                Gdx.input.isKeyPressed(Input.Keys.LEFT) -> move.direction = MoveDirection.LEFT
+                Gdx.input.isKeyPressed(Input.Keys.RIGHT) -> move.direction = MoveDirection.RIGHT
+                else -> move.direction = MoveDirection.NONE
+            }
         }
 
         when (move.direction) {
-            MoveDirection.None -> move.moveVelocity = 0f
-            MoveDirection.Left -> {
+            MoveDirection.NONE -> move.moveVelocity = 0f
+            MoveDirection.LEFT -> {
                 move.moveVelocity = -move.maxSpeed
                 entity[RenderComponent.mapper]?.sprite?.setFlip(true, false)
             }
-            MoveDirection.Right -> {
+            MoveDirection.RIGHT -> {
                 move.moveVelocity = move.maxSpeed
                 entity[RenderComponent.mapper]?.sprite?.setFlip(false, false)
             }

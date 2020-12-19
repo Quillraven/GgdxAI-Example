@@ -5,18 +5,18 @@ import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
 enum class MoveDirection {
-    None,
-    Left,
-    Right
+    NONE,
+    LEFT,
+    RIGHT,
 }
 
 class MoveComponent : Component, Pool.Poolable {
-    var direction = MoveDirection.None
+    var direction = MoveDirection.NONE
     var maxSpeed = 1f
     var moveVelocity = 0f
 
     override fun reset() {
-        direction = MoveDirection.None
+        direction = MoveDirection.NONE
         moveVelocity = 0f
         maxSpeed = 1f
     }

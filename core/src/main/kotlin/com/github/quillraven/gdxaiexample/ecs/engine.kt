@@ -10,6 +10,7 @@ import com.github.quillraven.gdxaiexample.ecs.system.AISystem
 import com.github.quillraven.gdxaiexample.ecs.system.AnimationSystem
 import com.github.quillraven.gdxaiexample.ecs.system.JumpSystem
 import com.github.quillraven.gdxaiexample.ecs.system.MoveSystem
+import com.github.quillraven.gdxaiexample.ecs.system.MoveToSystem
 import com.github.quillraven.gdxaiexample.ecs.system.PhysicDebugRenderSystem
 import com.github.quillraven.gdxaiexample.ecs.system.PhysicSystem
 import com.github.quillraven.gdxaiexample.ecs.system.RenderSystem
@@ -22,6 +23,7 @@ fun createDefaultEngine(
     assets: AssetManager,
 ) = PooledEngine().apply {
     addSystem(AISystem())
+    addSystem(MoveToSystem())
     addSystem(MoveSystem())
     addSystem(JumpSystem(world))
     addSystem(PhysicSystem(world))

@@ -6,10 +6,12 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.physics.box2d.BodyDef
 import com.badlogic.gdx.physics.box2d.World
 import com.github.quillraven.gdxaiexample.ai.AdventurerState
+import com.github.quillraven.gdxaiexample.ai.MageState
 import com.github.quillraven.gdxaiexample.ecs.component.AIComponent
 import com.github.quillraven.gdxaiexample.ecs.component.AnimationComponent
 import com.github.quillraven.gdxaiexample.ecs.component.MoveComponent
 import com.github.quillraven.gdxaiexample.ecs.component.PhysicComponent
+import com.github.quillraven.gdxaiexample.ecs.component.PlayerComponent
 import com.github.quillraven.gdxaiexample.ecs.component.RenderComponent
 import com.github.quillraven.gdxaiexample.ecs.component.TransformComponent
 import ktx.app.KtxScreen
@@ -24,11 +26,13 @@ class MainScreen(
 ) : KtxScreen {
     override fun show() {
         spawnPlayer()
+        spawnMage()
         spawnTerrain()
     }
 
     private fun spawnPlayer() {
         engine.entity {
+            with<PlayerComponent>()
             val transform = with<TransformComponent> {
                 moveImmediately(8f, 3f)
                 size.set(0.5f, 0.85f)
@@ -40,6 +44,8 @@ class MainScreen(
                     allowSleep = false
                     box(transform.size.x, transform.size.y) {
                         friction = 0f
+                        filter.categoryBits = Game.ENTITY_CATEGORY_CHARACTER
+                        filter.maskBits = Game.ENTITY_CATEGORY_TERRAIN
                     }
                 }
             }
@@ -51,6 +57,31 @@ class MainScreen(
                 maxSpeed = 4f
             }
             with<AIComponent> { state = AdventurerState.Idle }
+        }
+    }
+
+    private fun spawnMage() {
+        engine.entity {
+            val transform = with<TransformComponent> {
+                moveImmediately(1.5f, 2f)
+            }
+            with<PhysicComponent> {
+                body = world.body(BodyDef.BodyType.DynamicBody) {
+                    position.set(transform.position.x, transform.position.y)
+                    fixedRotation = true
+                    box(transform.size.x, transform.size.y) {
+                        friction = 0f
+                        filter.categoryBits = Game.ENTITY_CATEGORY_CHARACTER
+                        filter.maskBits = Game.ENTITY_CATEGORY_TERRAIN
+                    }
+                }
+            }
+            with<AnimationComponent>()
+            with<RenderComponent>()
+            with<MoveComponent> {
+                maxSpeed = 2f
+            }
+            with<AIComponent> { state = MageState.Idle }
         }
     }
 

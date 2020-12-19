@@ -54,5 +54,8 @@ class Game : KtxGame<KtxScreen>() {
         private val LOG = logger<Game>()
         const val UNIT_SCALE = 1 / 32f
         const val PHYSIC_TIME_STEP = 1 / 45f
+
+        const val ENTITY_CATEGORY_TERRAIN: Short = 0x0001
+        const val ENTITY_CATEGORY_CHARACTER: Short = 0x0002
     }
 }
