@@ -32,4 +32,4 @@ Player controls:
 
 `I` will trigger a delayed injured event to let the priest know that the player needs healing.
 
-The code is explained in more detail in following video: [Link TBD]()
+The code is explained in more detail in following video: [Link to YouTube](https://www.youtube.com/watch?v=LqAmBdKfPXU&ab_channel=Quillraven)
