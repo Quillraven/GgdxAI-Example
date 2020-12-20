@@ -47,7 +47,7 @@ abstract class AnimatedState(
 ) : EntityState {
     fun entityAnimation(entity: Entity): AnimationComponent {
         val animation = entity[AnimationComponent.mapper]
-        requireNotNull(animation, { "AnimationComponent missing for adventurer '$entity'" })
+        requireNotNull(animation, { "AnimationComponent missing for entity '$entity'" })
         return animation
     }
 
