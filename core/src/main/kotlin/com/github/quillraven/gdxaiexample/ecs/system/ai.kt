@@ -69,13 +69,17 @@ class AISystem : IteratingSystem(allOf(AIComponent::class).get()), KtxInputAdapt
         }
     }
 
-    override fun processEntity(entity: Entity, deltaTime: Float) {
-        val ai = entity[AIComponent.mapper]
-        requireNotNull(ai, { "AIComponent missing for entity '$entity'" })
-
+    override fun update(deltaTime: Float) {
         // update message dispatcher to send telegrams
         GdxAI.getTimepiece().update(deltaTime)
         messageDispatcher.update()
+
+        super.update(deltaTime)
+    }
+
+    override fun processEntity(entity: Entity, deltaTime: Float) {
+        val ai = entity[AIComponent.mapper]
+        requireNotNull(ai, { "AIComponent missing for entity '$entity'" })
 
         // update statemachine
         ai.stateTime += deltaTime
@@ -104,7 +108,7 @@ class AISystem : IteratingSystem(allOf(AIComponent::class).get()), KtxInputAdapt
     }
 
     override fun keyUp(keycode: Int): Boolean {
-        messageDispatcher.dispatchMessage(MsgCode.KEY_DOWN.ordinal, KeyExtraInfo.Up.apply { this.keycode = keycode })
+        messageDispatcher.dispatchMessage(MsgCode.KEY_UP.ordinal, KeyExtraInfo.Up.apply { this.keycode = keycode })
         return true
     }
 }
