@@ -1,22 +1,22 @@
 plugins {
-    kotlin("jvm") apply false
+    kotlin("jvm") version "2.1.10" apply false
 }
 
 subprojects {
+    apply(plugin = "org.jetbrains.kotlin.jvm")
     repositories {
-        jcenter()
+        mavenCentral()
         google()
     }
 
-    apply {
-        plugin("org.jetbrains.kotlin.jvm")
+    extensions.configure<JavaPluginExtension> {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
     }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = "1.8"
-            incremental = true
-        }
+    extensions.configure<org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension> {
+        jvmToolchain(17)
     }
 
     version = "0.0.1-SNAPSHOT"

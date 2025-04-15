@@ -3,7 +3,8 @@ plugins {
 }
 
 application {
-    mainClass.set("com.github.quillraven.gdxaiexample.lwjgl3.launcherKt")
+    mainClass.set("com.github.quillraven.gdxaiexample.lwjgl3.LauncherKt")
+    applicationDefaultJvmArgs = listOf("-XstartOnFirstThread")
 }
 
 sourceSets {
@@ -23,6 +24,7 @@ dependencies {
 
 tasks {
     jar {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         from(files(sourceSets.main.get().output.classesDirs))
         from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
 
