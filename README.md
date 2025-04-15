@@ -1,6 +1,6 @@
-[![Kotlin](https://img.shields.io/badge/kotlin-1.4.21-red.svg)](http://kotlinlang.org/)
-[![LibGDX](https://img.shields.io/badge/libgdx-1.9.12-green.svg)](https://libgdx.badlogicgames.com/)
-[![LibKTX](https://img.shields.io/badge/libktx-1.9.12--b1-blue.svg)](https://libktx.github.io/)
+[![Kotlin](https://img.shields.io/badge/kotlin-2.0.21-red.svg)](http://kotlinlang.org/)
+[![LibGDX](https://img.shields.io/badge/libgdx-1.13.1-green.svg)](https://libgdx.badlogicgames.com/)
+[![LibKTX](https://img.shields.io/badge/libktx-1.13.1--rc1-blue.svg)](https://libktx.github.io/)
 
 ![image](https://user-images.githubusercontent.com/93260/102691758-20f80580-420f-11eb-81df-f0104c6ac31f.png)
 
