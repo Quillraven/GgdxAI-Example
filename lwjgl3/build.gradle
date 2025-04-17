@@ -5,9 +5,6 @@ buildscript {
   }
   dependencies {
     classpath "io.github.fourlastor:construo:1.7.1"
-    if(enableGraalNative == 'true') {
-      classpath "org.graalvm.buildtools.native:org.graalvm.buildtools.native.gradle.plugin:0.9.28"
-    }
   }
 }
 plugins {
@@ -37,11 +34,6 @@ dependencies {
   implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
   implementation project(':core')
 
-  if(enableGraalNative == 'true') {
-    implementation "io.github.berstanio:gdx-svmhelper-backend-lwjgl3:$graalHelperVersion"
-      implementation "io.github.berstanio:gdx-svmhelper-extension-box2d:$graalHelperVersion"
-
-    }
 }
 
 def os = System.properties['os.name'].toLowerCase()
@@ -177,7 +169,3 @@ distributions {
 
 startScripts.dependsOn(':lwjgl3:jar')
 startScripts.classpath = project.tasks.jar.outputs.files
-
-if(enableGraalNative == 'true') {
-  apply from: file("nativeimage.gradle")
-}
